@@ -1,0 +1,41 @@
+<!DOCTYPE HTML><F2>
+
+<head>
+    <title>Fest list</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}datatables/css/jquery.dataTables.css">
+</head>
+
+<body>
+
+<table id="fest-list">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Start date</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for fest in fest_list %}
+        <tr>
+            <td class="sorting">{{ fest.name }}</td>
+            <td>{{ fest.country }}</td>
+            <td>{{ fest.start_date }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    <script type="text/javascript" language="javascript" src="{{ STATIC_URL }}datatables/js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $("#fest-list").dataTable({
+                "aoColumnDefs": [
+                        { "bSortable": false, 'aTargets': [1] },
+                        { "bSearchable": false, "aTargets": [1,2] }
+                    ]
+            });
+        } );
+    </script>
+</body>
